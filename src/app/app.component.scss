@@ -1,0 +1,29 @@
+.modeler {
+  width: 100%;
+  height: 800px;
+  display: flex;
+  flex-direction: row;
+}
+
+.diagram-container {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #ccc;
+}
+
+.propertiesPanelOpen {
+  width: calc(100% - 325px);
+}
+
+#properties {
+  height: 100%;
+  font-size: 8pt;
+  //position: absolute;
+  //top: 0;
+  //bottom: 0;
+  //right: 0;
+  width: 325px;
+  z-index: 10;
+  border: 1px solid #ccc;
+  overflow: auto;
+}

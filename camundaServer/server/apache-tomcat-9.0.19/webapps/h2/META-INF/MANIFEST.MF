@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: camunda BPM - H2 Webapp
+Implementation-Version: 7.11.0
+Archiver-Version: Plexus Archiver
+Built-By: camunda
+Implementation-Vendor-Id: org.camunda.bpm.distro
+Created-By: Apache Maven 3.2.5
+Build-Jdk: 1.8.0_181
+Implementation-Vendor: camunda services GmbH
+Dependencies: com.h2database.h2
+

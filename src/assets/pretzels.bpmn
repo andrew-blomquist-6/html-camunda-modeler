@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_0aiu0hy" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.1.2">
+  <bpmn:process id="andrew_process2" name="Do they like Pretzels?" isExecutable="true" camunda:versionTag="1.0.0">
+    <bpmn:startEvent id="StartEvent_1" name="start">
+      <bpmn:outgoing>SequenceFlow_0uhcawg</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0uhcawg" sourceRef="StartEvent_1" targetRef="Task_1wyurvt" />
+    <bpmn:userTask id="Task_1wyurvt" name="Ask the Customer if they Like Pretzels">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="FormField_2csv5cc" label="Do they like Pretzels?" type="boolean" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_0uhcawg</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_092n8ya</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="ExclusiveGateway_0q4xd81" name="Do they like Pretzels?">
+      <bpmn:documentation>Does the customer like pretzels?</bpmn:documentation>
+      <bpmn:incoming>SequenceFlow_092n8ya</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0x01v9n</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_103yaf6</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="SequenceFlow_092n8ya" sourceRef="Task_1wyurvt" targetRef="ExclusiveGateway_0q4xd81" />
+    <bpmn:sequenceFlow id="SequenceFlow_0x01v9n" name="No" sourceRef="ExclusiveGateway_0q4xd81" targetRef="Task_1pisfwf">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{not FormField_2csv5cc}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="SequenceFlow_103yaf6" name="Yes" sourceRef="ExclusiveGateway_0q4xd81" targetRef="Task_1rwk2ud">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{FormField_2csv5cc}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:endEvent id="EndEvent_1idc56d" name="end">
+      <bpmn:documentation>The Customer has been Fed</bpmn:documentation>
+      <bpmn:incoming>SequenceFlow_05yw9d3</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_1u99eh9</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_05yw9d3" sourceRef="Task_1rwk2ud" targetRef="EndEvent_1idc56d" />
+    <bpmn:sequenceFlow id="SequenceFlow_1u99eh9" sourceRef="Task_1pisfwf" targetRef="EndEvent_1idc56d" />
+    <bpmn:userTask id="Task_1rwk2ud" name="Give the Customer Pretzels">
+      <bpmn:incoming>SequenceFlow_103yaf6</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_05yw9d3</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Task_1pisfwf" name="Give the Customer Waffles">
+      <bpmn:incoming>SequenceFlow_0x01v9n</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1u99eh9</bpmn:outgoing>
+    </bpmn:userTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="andrew_process2">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="218" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="186" y="261" width="22" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0uhcawg_di" bpmnElement="SequenceFlow_0uhcawg">
+        <di:waypoint x="215" y="236" />
+        <di:waypoint x="265" y="236" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_172zq14_di" bpmnElement="Task_1wyurvt">
+        <dc:Bounds x="265" y="196" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ExclusiveGateway_0q4xd81_di" bpmnElement="ExclusiveGateway_0q4xd81" isMarkerVisible="true">
+        <dc:Bounds x="407" y="211" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="462" y="229" width="58" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_092n8ya_di" bpmnElement="SequenceFlow_092n8ya">
+        <di:waypoint x="365" y="236" />
+        <di:waypoint x="407" y="236" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0x01v9n_di" bpmnElement="SequenceFlow_0x01v9n">
+        <di:waypoint x="432" y="261" />
+        <di:waypoint x="432" y="346" />
+        <di:waypoint x="499" y="346" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="440" y="301" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_103yaf6_di" bpmnElement="SequenceFlow_103yaf6">
+        <di:waypoint x="432" y="211" />
+        <di:waypoint x="432" y="121" />
+        <di:waypoint x="499" y="121" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="438" y="163" width="18" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_1idc56d_di" bpmnElement="EndEvent_1idc56d">
+        <dc:Bounds x="714" y="218" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="723" y="261" width="19" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_05yw9d3_di" bpmnElement="SequenceFlow_05yw9d3">
+        <di:waypoint x="599" y="121" />
+        <di:waypoint x="657" y="121" />
+        <di:waypoint x="657" y="236" />
+        <di:waypoint x="714" y="236" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1u99eh9_di" bpmnElement="SequenceFlow_1u99eh9">
+        <di:waypoint x="599" y="346" />
+        <di:waypoint x="657" y="346" />
+        <di:waypoint x="657" y="236" />
+        <di:waypoint x="714" y="236" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_08cte0t_di" bpmnElement="Task_1rwk2ud">
+        <dc:Bounds x="499" y="81" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_1j7hvcb_di" bpmnElement="Task_1pisfwf">
+        <dc:Bounds x="499" y="306" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

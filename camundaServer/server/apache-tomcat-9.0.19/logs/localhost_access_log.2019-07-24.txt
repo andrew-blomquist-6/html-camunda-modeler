@@ -1,0 +1,13 @@
+0:0:0:0:0:0:0:1 - - [24/Jul/2019:14:48:00 -0600] "GET /camunda-welcome/index.html HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [24/Jul/2019:14:48:00 -0600] "GET /camunda-welcome/assets/img/apps-welcome.png HTTP/1.1" 200 84856
+0:0:0:0:0:0:0:1 - - [24/Jul/2019:14:48:00 -0600] "GET /camunda-welcome/assets/css/styles.min.css HTTP/1.1" 200 134396
+0:0:0:0:0:0:0:1 - - [24/Jul/2019:14:48:00 -0600] "GET /camunda-welcome/assets/img/apps-admin.png HTTP/1.1" 200 98869
+0:0:0:0:0:0:0:1 - - [24/Jul/2019:14:48:00 -0600] "GET /camunda-welcome/assets/css/welcome.css HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [24/Jul/2019:14:48:00 -0600] "GET /camunda-welcome/assets/img/apps-tasklist.png HTTP/1.1" 200 140308
+0:0:0:0:0:0:0:1 - - [24/Jul/2019:14:48:00 -0600] "GET /camunda-welcome/assets/img/apps-cockpit-dashboard.png HTTP/1.1" 200 164462
+0:0:0:0:0:0:0:1 - - [24/Jul/2019:14:48:00 -0600] "GET /camunda-welcome/assets/img/modeler.png HTTP/1.1" 200 85546
+0:0:0:0:0:0:0:1 - - [24/Jul/2019:14:48:00 -0600] "GET /camunda-welcome/assets/img/documentation.png HTTP/1.1" 200 166769
+0:0:0:0:0:0:0:1 - - [24/Jul/2019:14:48:00 -0600] "GET /camunda-welcome/assets/img/forum.png HTTP/1.1" 200 155563
+0:0:0:0:0:0:0:1 - - [24/Jul/2019:14:48:00 -0600] "GET /camunda-welcome/assets/fonts/opensans-regular-webfont.woff2 HTTP/1.1" 200 18828
+0:0:0:0:0:0:0:1 - - [24/Jul/2019:14:48:00 -0600] "GET /camunda-welcome/assets/fonts/bpmn.woff HTTP/1.1" 200 13416
+0:0:0:0:0:0:0:1 - - [24/Jul/2019:14:48:05 -0600] "GET /camunda-welcome/assets/img/favicon.ico HTTP/1.1" 200 1150
