@@ -1,30 +1,44 @@
 
 declare module 'bpmn-js/lib/Viewer' {
   import { Module } from 'didi';
+  import { default as Diagram, DiagramOptions } from 'diagram-js';
+  import {EventBus} from 'diagram-js/lib/core';
 
-  export interface ViewerOptions {
+  export interface ViewerOptions extends DiagramOptions {
     container: any;
+    canvas?: any;
     width?: string | number;
     height?: string | number;
+    position?: string;
     moddleExtensions?: any;
-    modules?: Module[];
     additionalModules?: Module[];
   }
 
   export type ErrorHandler = (err: Error, warnings?: any[]) => void;
   export type SaveHandler = (err: Error, xml: string) => void;
 
-  export default class Viewer {
+  // TODO: inherits from Diagram (from diagram-js)
+  export default class Viewer extends Diagram {
     // tslint:disable-next-line:variable-name
-    _modules: any[];
+    _modules: Module[];
     // tslint:disable-next-line:variable-name
     _moddleExtensions: any;
+
+
+    /**
+     * Register an event listener
+     *
+     * Remove a previously added listener via {@link #off(event, callback)}.
+     */
+    on: EventBus['on'];
+    off: EventBus['off'];
 
     /**
      * @param [options] configuration options to pass to the viewer
      * @param [options.container] the container to render the viewer in, defaults to body.
-     * @param [options.width] the width of the viewer
-     * @param [options.height] the height of the viewer
+     * @param [options.width] the width of the viewer - defaults to '100%'
+     * @param [options.height] the height of the viewer - defaults to '100%'
+     * @param [options.position] the position of the viewer - defaults to 'relative'
      * @param [options.moddleExtensions] extension packages to provide
      * @param [options.modules] a list of modules to override the default modules
      * @param [options.additionalModules] a list of modules to use with the default modules
@@ -144,40 +158,8 @@ declare module 'bpmn-js/lib/Viewer' {
     saveSVG(options: any, done: SaveHandler);
     saveSVG(done: SaveHandler);
 
-    /**
-     * Get a named diagram service.
-     *
-     * @example
-     *
-     * var elementRegistry = viewer.get('elementRegistry');
-     * var startEventShape = elementRegistry.get('StartEvent_1');
-     *
-     * @return diagram service instance
-     *
-     * @method Viewer#get
-     */
-    get(name: string): any;
-
-    /**
-     * Invoke a function in the context of this viewer.
-     *
-     * @example
-     *
-     * viewer.invoke(function(elementRegistry) {
-     *   var startEventShape = elementRegistry.get('StartEvent_1');
-     * });
-     *
-     * @param [fn] function to be invoked
-     *
-     * @return the functions return value
-     *
-     * @method Viewer#invoke
-     */
-    invoke(fn: (elementRegistry?: any) => any): any;
-
-    _setDefinitions(definitions: any);
     getDefinitions(): any;
-    getModules(): any;
+    getModules(): Module[];
 
     /**
      * Remove all drawn elements from the viewer.
@@ -196,39 +178,15 @@ declare module 'bpmn-js/lib/Viewer' {
     destroy();
 
     /**
-     * Register an event listener
-     *
-     * Remove a previously added listener via {@link #off(event, callback)}.
-     */
-    on(event: string, priority: number, callback: () => any, target: any);
-
-    /**
-     * De-register an event listener
-     */
-    off(event: string, callback: () => any);
-
-    /**
      * Attach the viewer to a DOM element
      *
      * @param [parentNode] can be a string (for selecting via JQuery) or a DOM Element
      */
-    attachTo(parentNode: any | string);
+    attachTo(parentNode: HTMLElement | string);
 
     /**
      * removes the viewer from the DOM
      */
     detach();
-
-    _init(container: any, moddle: any, options: any);
-
-    /**
-     * Emit an event on the underlying {@link EventBus}
-     *
-     * @return event processing result (if any)
-     */
-    _emit(type: string, event: any): any;
-
-    _createContainer(options: { width: any, height: any, position: any }): HTMLElement;
-    _createModdle(options: { moddleExtensions: any }): any;
   }
 }

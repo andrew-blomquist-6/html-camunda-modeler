@@ -1,3 +1,4 @@
+// https://github.com/nikku/didi
 
 declare module 'didi' {
   export class Module {
@@ -9,10 +10,14 @@ declare module 'didi' {
 
   export class Injector {
     constructor(modules: any, parent: any);
-    get(name: string, strict: boolean): any;
+    /**
+     * @param name    the name of the service
+     * @param strict  defaults to true. If false, resolve missing services to null
+     */
+    get<T>(name: string, strict?: boolean): T;
     invoke(func: any, context: any, locals: any): any;
     instantiate(Type: any);
-    createChild(modules: any, forceNewInstances: any);
+    createChild(modules: any, forceNewInstances: string[]);
   }
 
   export function annotate(...args): (...args) => any;
