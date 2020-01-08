@@ -2,7 +2,7 @@
 declare module 'bpmn-js/lib/Viewer' {
   import { Module } from 'didi';
   import { default as Diagram, DiagramOptions } from 'diagram-js';
-  import {EventBus} from 'diagram-js/lib/core';
+  import EventBus from 'diagram-js/lib/core/EventBus.js';
 
   export interface ViewerOptions extends DiagramOptions {
     container: any;
