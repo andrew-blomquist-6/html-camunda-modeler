@@ -1,26 +1,27 @@
 // https://github.com/nikku/didi
 
 declare module 'didi' {
+  type ProvidersArray = [string, 'factory' | 'value' | 'type', any][];
   export class Module {
-    factory(name: any, factory: any): any;
-    value(name: any, value: any): any;
-    type(name: any, type: any): any;
-    forEach(iterator: any);
+    factory(name: string, factory: any): Module;
+    value(name: string, value: any): Module;
+    type(name: string, type: any): Module;
+    forEach(iterator: (currentValue: any, index?: number, array?: ProvidersArray[], thisArg?: object) => void);
   }
 
   export class Injector {
-    constructor(modules: any, parent: any);
+    constructor(modules: Module[], parent: Injector);
     /**
      * @param name    the name of the service
      * @param strict  defaults to true. If false, resolve missing services to null
      */
     get<T>(name: string, strict?: boolean): T;
-    invoke(func: any, context: any, locals: any): any;
-    instantiate(Type: any);
-    createChild(modules: any, forceNewInstances: string[]);
+    /**
+     * @param context defaults to the global object in non-strict mode when null or undefined
+     * @param locals  defaults to an empty object
+     */
+    invoke(func: (...args) => any, context?: object, locals?: object): any;
+    instantiate(Type: (...args) => any): any;
+    createChild(modules: Module[], forceNewInstances: string[]): Injector;
   }
-
-  export function annotate(...args): (...args) => any;
-
-  export function parseAnnotations(fn: (...args) => any): any;
 }
